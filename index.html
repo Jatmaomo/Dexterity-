@@ -1,0 +1,1922 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DEXTERITY+ KONSULTS — Precision in Writing. Excellence in Service.</title>
+    <meta
+      name="description"
+      content="DEXTERITY+ KONSULTS: Professional solutions you can trust. Academic project writing, online registration, NYSC affairs, and creative graphics services."
+    />
+    <meta property="og:title" content="DEXTERITY+ KONSULTS — Precision in Writing. Excellence in Service." />
+    <meta
+      property="og:description"
+      content="Your Ideas. Our Expertise. Outstanding Results. Academic project writing, online registration, NYSC affairs, and creative graphics services."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#02040D" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts: Archivo & Urbanist -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@1,62..125,100..900&family=Urbanist:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --u: max(calc(100vw / 1440), calc(100vh / 810));
+        --brand-gold: #d5a52b;
+        --brand-gold-light: #f4d375;
+        --brand-navy: #07143b;
+        --brand-navy-dark: #02040d;
+        --brand-ivory: #f7f5ef;
+        --wa-green: #25d366;
+        --color-midnight: #050817;
+        --color-deep-black: #03040a;
+        --color-champagne: #d6b45c;
+        --color-champagne-light: #f2d98b;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        background-color: var(--brand-navy-dark);
+        color: #ffffff;
+      }
+
+      body {
+        font-family: "Urbanist", sans-serif;
+        background-color: var(--brand-navy-dark);
+        color: #ffffff;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        cursor: default;
+      }
+
+      /* Custom Interactive Cursor */
+      .custom-cursor-dot {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 7px;
+        height: 7px;
+        background-color: var(--brand-gold-light);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 99999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        transform: translate3d(-100px, -100px, 0);
+      }
+
+      .custom-cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 44px;
+        height: 44px;
+        border: 1.5px solid rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 99998;
+        opacity: 0;
+        transition:
+          opacity 0.3s ease,
+          width 0.25s ease,
+          height 0.25s ease,
+          border-color 0.25s ease,
+          background-color 0.25s ease;
+        transform: translate3d(-100px, -100px, 0);
+      }
+
+      /* =========================================================
+         HERO SECTION: 3D CADET HEAD-TRACKING + DEXTERITY HEADLINE
+         ========================================================= */
+      #stage {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        min-height: 600px;
+        overflow: hidden;
+        background: #02040d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        isolation: isolate;
+      }
+
+      #frame {
+        position: relative;
+        width: calc(1440 * var(--u));
+        height: calc(810 * var(--u));
+        max-width: 100vw;
+        max-height: 100vh;
+        overflow: hidden;
+      }
+
+      /* 1920x1080 cinematic space plate */
+      .plate-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center bottom;
+        z-index: 1;
+        user-select: none;
+        pointer-events: none;
+      }
+
+      /* Scrubbable head-turn video overlay */
+      #head-video {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: calc(52 * var(--u));
+        width: calc(470 * var(--u));
+        height: calc(490 * var(--u));
+        object-fit: cover;
+        object-position: center top;
+        z-index: 2;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        clip-path: ellipse(48% 50% at 50% 50%);
+      }
+
+      #head-video.visible {
+        opacity: 1;
+      }
+
+      /* Glass bubble helmet overlay */
+      #helmet-img {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%) translateY(calc(-40 * var(--u))) scale(1.08);
+        bottom: calc(115 * var(--u));
+        width: calc(490 * var(--u));
+        height: calc(490 * var(--u));
+        z-index: 5;
+        pointer-events: none;
+        opacity: 0;
+        transition:
+          transform 0.65s cubic-bezier(0.34, 1.35, 0.64, 1),
+          opacity 0.5s ease;
+      }
+
+      #helmet-img.on {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+
+      /* PUSH ME chest button */
+      #push-btn {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: calc(108 * var(--u));
+        width: calc(112 * var(--u));
+        height: calc(42 * var(--u));
+        background: linear-gradient(135deg, #e53935 0%, #b71c1c 100%);
+        border: 2px solid rgba(255, 255, 255, 0.85);
+        border-radius: 999px;
+        color: #ffffff;
+        font-family: "Urbanist", sans-serif;
+        font-size: calc(11.5 * var(--u));
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        cursor: pointer;
+        z-index: 10;
+        box-shadow:
+          0 0 24px rgba(229, 57, 53, 0.75),
+          inset 0 1px 3px rgba(255, 255, 255, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: calc(6 * var(--u));
+        outline: none;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.25s ease,
+          filter 0.2s ease;
+      }
+
+      #push-btn:hover {
+        transform: translateX(-50%) scale(1.06);
+        box-shadow:
+          0 0 34px rgba(229, 57, 53, 0.95),
+          0 0 14px rgba(255, 255, 255, 0.5);
+      }
+
+      #push-btn.pressing {
+        transform: translateX(-50%) scale(0.92);
+      }
+
+      .btn-glow-dot {
+        width: calc(6.5 * var(--u));
+        height: calc(6.5 * var(--u));
+        background-color: #ffffff;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #ffffff;
+        animation: pulseDot 1.4s infinite alternate ease-in-out;
+      }
+
+      @keyframes pulseDot {
+        0% {
+          opacity: 0.4;
+          transform: scale(0.85);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+
+      /* Logo top left */
+      .logo {
+        position: absolute;
+        left: calc(48 * var(--u));
+        top: calc(42 * var(--u));
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        gap: calc(14 * var(--u));
+        text-decoration: none;
+      }
+
+      .logo-disc {
+        width: calc(38 * var(--u));
+        height: calc(38 * var(--u));
+        border-radius: 50%;
+        background: linear-gradient(135deg, #f4d375 0%, #d5a52b 50%, #8c6a12 100%);
+        border: 1.5px solid rgba(255, 255, 255, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #040c24;
+        font-family: "Archivo", sans-serif;
+        font-style: italic;
+        font-weight: 900;
+        font-size: calc(17 * var(--u));
+        box-shadow: 0 0 20px rgba(213, 165, 43, 0.5);
+      }
+
+      .logo-text-block {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .logo-text {
+        font-family: "Archivo", sans-serif;
+        font-style: italic;
+        font-weight: 900;
+        font-size: calc(26 * var(--u));
+        letter-spacing: 0.04em;
+        line-height: 0.95;
+        background: linear-gradient(180deg, #ffffff 30%, #e2d2a4 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .logo-subtext {
+        font-family: "Urbanist", sans-serif;
+        font-weight: 700;
+        font-size: calc(9.5 * var(--u));
+        letter-spacing: 0.32em;
+        color: var(--brand-gold-light);
+        text-transform: uppercase;
+        margin-top: calc(2 * var(--u));
+      }
+
+      /* Menu button top right */
+      .menu-btn {
+        position: absolute;
+        right: calc(48 * var(--u));
+        top: calc(46 * var(--u));
+        z-index: 20;
+        background: none;
+        border: none;
+        width: calc(36 * var(--u));
+        height: calc(24 * var(--u));
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+        cursor: pointer;
+        outline: none;
+      }
+
+      .menu-bar {
+        height: calc(2.5 * var(--u));
+        background: #ffffff;
+        border-radius: 2px;
+        transition:
+          width 0.25s ease,
+          background-color 0.25s ease;
+      }
+
+      .menu-bar:nth-child(1) {
+        width: 100%;
+      }
+      .menu-bar:nth-child(2) {
+        width: 75%;
+      }
+      .menu-bar:nth-child(3) {
+        width: 50%;
+      }
+
+      .menu-btn:hover .menu-bar {
+        background-color: var(--brand-gold-light);
+        width: 100%;
+      }
+
+      /* Hero Copy Block */
+      .copy-block {
+        position: absolute;
+        top: calc(125 * var(--u));
+        left: 0;
+        width: 100%;
+        text-align: center;
+        z-index: 10;
+        pointer-events: none;
+      }
+
+      .eyebrow {
+        font-family: "Urbanist", sans-serif;
+        font-weight: 700;
+        font-size: calc(14 * var(--u));
+        letter-spacing: 0.46em;
+        text-transform: uppercase;
+        color: var(--brand-gold-light);
+        margin-bottom: calc(12 * var(--u));
+        text-shadow: 0 0 16px rgba(213, 165, 43, 0.45);
+      }
+
+      .headline-title {
+        font-family: "Archivo", sans-serif;
+        font-style: italic;
+        font-weight: 900;
+        font-size: calc(122 * var(--u));
+        line-height: 0.88;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #ffffff;
+        text-shadow:
+          0 0 35px rgba(213, 165, 43, 0.7),
+          0 0 70px rgba(213, 165, 43, 0.4),
+          0 0 120px rgba(213, 165, 43, 0.2);
+        margin-bottom: calc(16 * var(--u));
+      }
+
+      .subtitle {
+        font-family: "Urbanist", sans-serif;
+        font-weight: 500;
+        font-size: calc(18 * var(--u));
+        color: rgba(255, 255, 255, 0.88);
+        letter-spacing: 0.06em;
+        margin-bottom: calc(16 * var(--u));
+      }
+
+      .service-strip {
+        font-family: "Urbanist", sans-serif;
+        font-weight: 700;
+        font-size: calc(12 * var(--u));
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: rgba(244, 211, 117, 0.95);
+        display: flex;
+        justify-content: center;
+        gap: calc(16 * var(--u));
+      }
+
+      .caption-corner {
+        position: absolute;
+        bottom: calc(36 * var(--u));
+        z-index: 10;
+        font-family: "Urbanist", sans-serif;
+        font-size: calc(12 * var(--u));
+        color: rgba(255, 255, 255, 0.65);
+        letter-spacing: 0.05em;
+        pointer-events: none;
+      }
+
+      .caption-left {
+        left: calc(48 * var(--u));
+      }
+
+      .caption-right {
+        right: calc(48 * var(--u));
+        text-align: right;
+      }
+
+      .activation-toast {
+        position: absolute;
+        top: calc(90 * var(--u));
+        left: 50%;
+        transform: translateX(-50%) translateY(-20px);
+        background: rgba(7, 20, 59, 0.85);
+        border: 1px solid var(--brand-gold);
+        backdrop-filter: blur(10px);
+        padding: calc(8 * var(--u)) calc(22 * var(--u));
+        border-radius: 999px;
+        color: var(--brand-gold-light);
+        font-family: "Urbanist", sans-serif;
+        font-size: calc(11 * var(--u));
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        z-index: 30;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 0 25px rgba(213, 165, 43, 0.35);
+      }
+
+      .activation-toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      /* =========================================================
+         CINEMATIC SERVICE SECTIONS (SPLIT-OVERLAY 65-75% DOMINANCE)
+         ========================================================= */
+      .cinematic-service-section {
+        position: relative;
+        min-height: 100vh;
+        width: 100vw;
+        background: #02040d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+        border-top: 1px solid rgba(214, 180, 92, 0.15);
+        isolation: isolate;
+        overflow: hidden;
+      }
+
+      .cinematic-theater-container {
+        position: relative;
+        width: 100%;
+        max-width: 1080px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cinematic-video-theater {
+        position: relative;
+        width: 100%;
+        max-width: 440px;
+        aspect-ratio: 9 / 16;
+        max-height: 640px;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #000000;
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.9),
+          0 0 40px rgba(214, 180, 92, 0.18);
+        border: 1px solid rgba(214, 180, 92, 0.3);
+      }
+
+      .cinematic-service-video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        background: #000000;
+        display: block;
+      }
+
+      /* Subtle Feather Gradient Across Lower 42% Only */
+      .cinematic-bottom-gradient {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(
+          to top,
+          rgba(3, 8, 24, 0.96) 0%,
+          rgba(3, 8, 24, 0.82) 24%,
+          rgba(3, 8, 24, 0.42) 36%,
+          rgba(3, 8, 24, 0) 48%
+        );
+        z-index: 2;
+      }
+
+      /* Bottom Overlay Holding Content */
+      .cinematic-bottom-overlay {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 24px 22px 20px 22px;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .service-kicker {
+        font-family: "Urbanist", sans-serif;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--brand-gold-light);
+        text-shadow: 0 0 10px rgba(213, 165, 43, 0.6);
+      }
+
+      .service-title {
+        font-family: "Archivo", sans-serif;
+        font-style: italic;
+        font-weight: 900;
+        font-size: 24px;
+        line-height: 1.05;
+        color: #ffffff;
+        text-transform: uppercase;
+      }
+
+      .service-headline {
+        font-family: "Urbanist", sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--brand-gold-light);
+        line-height: 1.25;
+      }
+
+      .service-desc {
+        font-size: 12.5px;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.88);
+      }
+
+      .service-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 4px;
+      }
+
+      .service-tag {
+        font-size: 10px;
+        font-weight: 600;
+        padding: 3px 8px;
+        border-radius: 4px;
+        background: rgba(7, 20, 59, 0.7);
+        border: 1px solid rgba(214, 180, 92, 0.25);
+        color: #f7f5ef;
+      }
+
+      .service-actions-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      /* Compact Rectangular Contact Buttons */
+      .compact-contact-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 32px;
+        padding: 0 12px;
+        border-radius: 4px;
+        font-family: "Urbanist", sans-serif;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        line-height: 1;
+        cursor: pointer;
+        backdrop-filter: blur(8px);
+        transition:
+          transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+          background 0.2s ease,
+          border-color 0.2s ease,
+          box-shadow 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .compact-contact-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .compact-wa-btn {
+        background: rgba(4, 14, 38, 0.88);
+        border: 1px solid rgba(37, 211, 102, 0.4);
+        color: #ffffff;
+      }
+
+      .compact-wa-btn .icon-badge {
+        color: #25d366;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .compact-wa-btn:hover {
+        background: rgba(37, 211, 102, 0.16);
+        border-color: #25d366;
+        box-shadow: 0 4px 18px rgba(37, 211, 102, 0.3);
+        color: #ffffff;
+      }
+
+      .compact-phone-btn {
+        background: rgba(4, 14, 38, 0.88);
+        border: 1px solid rgba(214, 180, 92, 0.4);
+        color: #ffffff;
+      }
+
+      .compact-phone-btn .icon-badge {
+        color: #f2d98b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .compact-phone-btn:hover {
+        background: rgba(214, 180, 92, 0.18);
+        border-color: #f2d98b;
+        box-shadow: 0 4px 18px rgba(214, 180, 92, 0.3);
+        color: #ffffff;
+      }
+
+      .sound-toggle-btn {
+        background: rgba(4, 14, 38, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #f4d375;
+        border-radius: 4px;
+        height: 32px;
+        padding: 0 10px;
+        font-family: "Urbanist", sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition:
+          background 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .sound-toggle-btn:hover {
+        background: rgba(214, 180, 92, 0.2);
+        border-color: var(--brand-gold-light);
+      }
+
+      /* =========================================================
+         CONTACT & CONSULTATION SECTION
+         ========================================================= */
+      #contact-section {
+        position: relative;
+        background: #030612;
+        padding: 90px 20px;
+        border-top: 1px solid rgba(214, 180, 92, 0.2);
+      }
+
+      .contact-container {
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      .contact-header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+
+      .contact-kicker {
+        font-family: "Urbanist", sans-serif;
+        font-weight: 800;
+        font-size: 12px;
+        letter-spacing: 0.35em;
+        color: var(--brand-gold-light);
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+
+      .contact-title {
+        font-family: "Archivo", sans-serif;
+        font-style: italic;
+        font-weight: 900;
+        font-size: clamp(32px, 4vw, 56px);
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        line-height: 1;
+        margin-bottom: 16px;
+      }
+
+      .contact-subtitle {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.75);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+
+      @media (max-width: 768px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .contact-card {
+        background: rgba(7, 20, 59, 0.45);
+        border: 1px solid rgba(214, 180, 92, 0.25);
+        border-radius: 10px;
+        padding: 32px;
+      }
+
+      .form-group {
+        margin-bottom: 18px;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--brand-gold-light);
+        margin-bottom: 8px;
+      }
+
+      .form-control {
+        width: 100%;
+        background: rgba(2, 4, 13, 0.85);
+        border: 1px solid rgba(214, 180, 92, 0.3);
+        border-radius: 6px;
+        padding: 12px 14px;
+        color: #ffffff;
+        font-family: "Urbanist", sans-serif;
+        font-size: 14px;
+        outline: none;
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .form-control:focus {
+        border-color: var(--brand-gold-light);
+        box-shadow: 0 0 14px rgba(214, 180, 92, 0.35);
+      }
+
+      .submit-btn {
+        width: 100%;
+        height: 48px;
+        background: linear-gradient(135deg, #f4d375 0%, #d5a52b 100%);
+        border: none;
+        border-radius: 6px;
+        color: #040c24;
+        font-family: "Urbanist", sans-serif;
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 24px rgba(213, 165, 43, 0.4);
+      }
+
+      .direct-channels {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .channel-item {
+        background: rgba(2, 4, 13, 0.7);
+        border: 1px solid rgba(214, 180, 92, 0.25);
+        border-radius: 8px;
+        padding: 18px 20px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: #ffffff;
+        transition:
+          border-color 0.2s ease,
+          transform 0.18s ease;
+      }
+
+      .channel-item:hover {
+        border-color: var(--brand-gold-light);
+        transform: translateX(4px);
+      }
+
+      .channel-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .channel-icon.wa {
+        background: rgba(37, 211, 102, 0.18);
+        color: #25d366;
+        border: 1px solid #25d366;
+      }
+
+      .channel-icon.phone {
+        background: rgba(214, 180, 92, 0.18);
+        color: #f2d98b;
+        border: 1px solid #f2d98b;
+      }
+
+      .channel-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      .channel-value {
+        font-size: 17px;
+        font-weight: 700;
+        color: #ffffff;
+      }
+
+      /* Slide-out Navigation Drawer */
+      .nav-drawer {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(12px);
+        z-index: 10050;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .nav-drawer.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-drawer-panel {
+        width: 100%;
+        max-width: 420px;
+        height: 100%;
+        background: #040c24;
+        border-left: 1px solid rgba(214, 180, 92, 0.35);
+        padding: 32px 28px;
+        box-shadow: -10px 0 50px rgba(0, 0, 0, 0.85);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow-y: auto;
+      }
+
+      .nav-drawer.open .nav-drawer-panel {
+        transform: translateX(0);
+      }
+
+      .drawer-close {
+        background: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        width: 34px;
+        height: 34px;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          border-color 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .drawer-close:hover {
+        border-color: #d6b45c;
+        color: #f2d98b;
+      }
+
+      .service-item-box {
+        display: block;
+        background: rgba(7, 20, 59, 0.55);
+        border: 1px solid rgba(214, 180, 92, 0.25);
+        border-radius: 6px;
+        padding: 13px 15px;
+        margin-bottom: 10px;
+        text-decoration: none;
+        transition:
+          border-color 0.2s ease,
+          background 0.2s ease,
+          transform 0.15s ease;
+      }
+
+      .service-item-box:hover {
+        border-color: #f2d98b;
+        background: rgba(14, 38, 104, 0.75);
+        transform: translateX(4px);
+      }
+
+      /* Mobile breakpoint overrides for Hero */
+      @media (max-width: 820px) {
+        .logo {
+          position: fixed;
+          left: 20px;
+          top: 20px;
+          gap: 10px;
+        }
+
+        .logo-disc {
+          width: 28px;
+          height: 28px;
+          font-size: 13px;
+        }
+
+        .logo-text {
+          font-size: 22px;
+        }
+
+        .logo-subtext {
+          font-size: 8px;
+        }
+
+        .menu-btn {
+          position: fixed;
+          left: auto;
+          right: 20px;
+          top: 22px;
+          width: 24px;
+          height: 18px;
+        }
+
+        .menu-bar {
+          width: 24px;
+          height: 2.5px;
+        }
+
+        .copy-block {
+          position: fixed;
+          top: 74px;
+          left: 0;
+          width: 100%;
+          padding: 0 16px;
+        }
+
+        .eyebrow {
+          font-size: 13px;
+          margin-bottom: 6px;
+          letter-spacing: 0.42em;
+        }
+
+        .headline-title {
+          font-size: 58px;
+          margin-bottom: 8px;
+        }
+
+        .subtitle {
+          font-size: 13px;
+          margin-bottom: 10px;
+        }
+
+        .service-strip {
+          font-size: 9px;
+          letter-spacing: 0.16em;
+          gap: 8px;
+        }
+
+        .caption-corner {
+          display: none;
+        }
+      }
+
+      /* Mobile floating contact bar */
+      .mobile-contact-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(2, 4, 13, 0.95);
+        border-top: 1px solid rgba(214, 180, 92, 0.35);
+        backdrop-filter: blur(12px);
+        padding: 10px 16px;
+        display: none;
+        align-items: center;
+        justify-content: space-around;
+        gap: 10px;
+        z-index: 9999;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Custom Cursor -->
+    <div id="cursor-dot" class="custom-cursor-dot"></div>
+    <div id="cursor-ring" class="custom-cursor-ring"></div>
+
+    <!-- Activation Toast -->
+    <div id="activation-toast" class="activation-toast">HELMET PROTOCOL ENGAGED // DEXTERITY ACTIVE</div>
+
+    <!-- =========================================================
+         SECTION 1: HERO (CADET 3D HEAD FOLLOW + DEXTERITY HEADLINE)
+         ========================================================= -->
+    <section id="stage">
+      <div id="frame">
+        <!-- 1920x1080 Base Plate -->
+        <img
+          class="plate-img"
+          src="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/a194141a-44ba-44bb-8372-e6720af994ca.jpg"
+          alt="Dexterity+ Konsults 3D Cadet Hero"
+          loading="eager"
+        />
+
+        <!-- Scrubbable Head-Turn Video Overlay -->
+        <video id="head-video" muted playsinline preload="auto"></video>
+
+        <!-- Glass Bubble Helmet SVG Overlay -->
+        <svg
+          id="helmet-img"
+          viewBox="0 0 490 490"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!-- Outer Glass Sphere with Specular Shine -->
+          <circle cx="245" cy="245" r="230" fill="url(#helmetGlassGrad)" stroke="url(#helmetBorderGrad)" stroke-width="6" opacity="0.9" />
+          <!-- Specular Curved Highlight -->
+          <ellipse cx="180" cy="120" rx="95" ry="42" transform="rotate(-32 180 120)" fill="url(#specularGrad)" opacity="0.75" />
+          <!-- Inner Visor Tint -->
+          <circle cx="245" cy="245" r="215" fill="url(#visorTint)" opacity="0.35" />
+          <!-- Collar Ring Rim -->
+          <ellipse cx="245" cy="460" rx="160" ry="24" fill="#040c24" stroke="#d5a52b" stroke-width="4" />
+          <defs>
+            <radialGradient id="helmetGlassGrad" cx="35%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35" />
+              <stop offset="45%" stop-color="#64b5f6" stop-opacity="0.12" />
+              <stop offset="80%" stop-color="#0d47a1" stop-opacity="0.25" />
+              <stop offset="100%" stop-color="#f4d375" stop-opacity="0.4" />
+            </radialGradient>
+            <linearGradient id="helmetBorderGrad" x1="0" y1="0" x2="490" y2="490">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+              <stop offset="40%" stop-color="#f4d375" stop-opacity="0.8" />
+              <stop offset="100%" stop-color="#0288d1" stop-opacity="0.6" />
+            </linearGradient>
+            <linearGradient id="specularGrad" x1="85" y1="78" x2="275" y2="162">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+              <stop offset="60%" stop-color="#ffffff" stop-opacity="0.3" />
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+            </linearGradient>
+            <radialGradient id="visorTint" cx="50%" cy="50%" r="50%">
+              <stop offset="60%" stop-color="#07143b" stop-opacity="0" />
+              <stop offset="100%" stop-color="#f4d375" stop-opacity="0.45" />
+            </radialGradient>
+          </defs>
+        </svg>
+
+        <!-- Chest PUSH ME button -->
+        <button id="push-btn" aria-label="Toggle Glass Bubble Helmet">
+          <span class="btn-glow-dot"></span>
+          <span>PUSH ME</span>
+        </button>
+
+        <!-- Brand Logo Top Left -->
+        <a href="#stage" id="logo" class="logo">
+          <div class="logo-disc">D+</div>
+          <div class="logo-text-block">
+            <span class="logo-text">DEXTERITY</span>
+            <span class="logo-subtext">KONSULTS</span>
+          </div>
+        </a>
+
+        <!-- Hamburger Drawer Button Top Right -->
+        <button id="menu-btn" class="menu-btn" aria-label="Open Navigation">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
+
+        <!-- Headline & Brand Copy -->
+        <div class="copy-block">
+          <div id="eyebrow" class="eyebrow">PRECISION IN WRITING &bull; EXCELLENCE IN SERVICE</div>
+          <h1 id="headline" class="headline-title">DEXTERITY</h1>
+          <div id="subtitle" class="subtitle">Your Ideas. Our Expertise. Outstanding Results.</div>
+          <div id="service-strip" class="service-strip">
+            <span>PROJECT WRITING</span>
+            <span>&bull;</span>
+            <span>ONLINE REGISTRATION</span>
+            <span>&bull;</span>
+            <span>NYSC AFFAIRS</span>
+            <span>&bull;</span>
+            <span>GRAPHICS</span>
+          </div>
+        </div>
+
+        <!-- Corner Badges -->
+        <div id="caption-left" class="caption-corner caption-left">
+          DEXTERITY+ KONSULTS &bull; EST. NIGERIA
+        </div>
+        <div id="caption-right" class="caption-corner caption-right">
+          WHATSAPP: 09154682775 &bull; TEL: 07026634724
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 2: PROJECT WRITING
+         ========================================================= -->
+    <section id="service-writing" class="cinematic-service-section">
+      <div class="cinematic-theater-container">
+        <div class="cinematic-video-theater">
+          <video
+            id="video-project-writing"
+            class="cinematic-service-video"
+            src="/assets/aistudio/20261106_080433_cf3dd1a7.mp4"
+            muted
+            loop
+            playsinline
+            autoplay
+          ></video>
+          <div class="cinematic-bottom-gradient"></div>
+          <div class="cinematic-bottom-overlay">
+            <div class="service-kicker">CORE ACADEMIC SOLUTION</div>
+            <div class="service-title">PROJECT WRITING</div>
+            <div class="service-headline">Your Ideas Deserve Excellent Execution.</div>
+            <p class="service-desc">
+              Well-researched, original, and professionally structured academic project assistance tailored precisely to your department's standards.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">Undergraduate & Masters</span>
+              <span class="service-tag">SPSS & Python Data</span>
+              <span class="service-tag">Plagiarism-Free</span>
+            </div>
+            <div class="service-actions-row">
+              <a
+                class="compact-contact-btn compact-wa-btn"
+                href="https://wa.me/2349154682775?text=Hello%20DEXTERITY%2B%20KONSULTS%2C%20I%20need%20assistance%20with%20Academic%20Project%20Writing"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="icon-badge">💬</span> WhatsApp (09154682775)
+              </a>
+              <a class="compact-contact-btn compact-phone-btn" href="tel:07026634724">
+                <span class="icon-badge">📞</span> Call (07026634724)
+              </a>
+              <button class="sound-toggle-btn" data-target="video-project-writing">
+                <span class="sound-icon">🔇</span> <span class="sound-text">MUTE</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 3: ONLINE REGISTRATION & CLEARANCE
+         ========================================================= -->
+    <section id="service-registration" class="cinematic-service-section">
+      <div class="cinematic-theater-container">
+        <div class="cinematic-video-theater">
+          <video
+            id="video-online-registration"
+            class="cinematic-service-video"
+            src="/assets/aistudio/YTShort_06Nov2026_07_32_36_47d039a3.mp4"
+            muted
+            loop
+            playsinline
+            autoplay
+          ></video>
+          <div class="cinematic-bottom-gradient"></div>
+          <div class="cinematic-bottom-overlay">
+            <div class="service-kicker">INSTITUTIONAL SERVICES</div>
+            <div class="service-title">ONLINE REGISTRATION</div>
+            <div class="service-headline">Fast, Error-Free Institutional Clearance.</div>
+            <p class="service-desc">
+              Seamless portal registrations, JAMB, university admissions, and student clearance processed with speed, verification, and accuracy.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">JAMB CAPS</span>
+              <span class="service-tag">School Clearance</span>
+              <span class="service-tag">Course Reg</span>
+            </div>
+            <div class="service-actions-row">
+              <a
+                class="compact-contact-btn compact-wa-btn"
+                href="https://wa.me/2349154682775?text=Hello%20DEXTERITY%2B%20KONSULTS%2C%20I%20need%20assistance%20with%20Online%20Registration%20and%20Clearance"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="icon-badge">💬</span> WhatsApp (09154682775)
+              </a>
+              <a class="compact-contact-btn compact-phone-btn" href="tel:07026634724">
+                <span class="icon-badge">📞</span> Call (07026634724)
+              </a>
+              <button class="sound-toggle-btn" data-target="video-online-registration">
+                <span class="sound-icon">🔇</span> <span class="sound-text">MUTE</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 4: NYSC AFFAIRS
+         ========================================================= -->
+    <section id="service-nysc" class="cinematic-service-section">
+      <div class="cinematic-theater-container">
+        <div class="cinematic-video-theater">
+          <video
+            id="video-nysc-affairs"
+            class="cinematic-service-video"
+            src="/assets/aistudio/20261106_081333_58dcd90d.mp4"
+            muted
+            loop
+            playsinline
+            autoplay
+          ></video>
+          <div class="cinematic-bottom-gradient"></div>
+          <div class="cinematic-bottom-overlay">
+            <div class="service-kicker">CORPS MEMBER ADVISORY</div>
+            <div class="service-title">NYSC AFFAIRS</div>
+            <div class="service-headline">Transition into National Service with Total Confidence.</div>
+            <p class="service-desc">
+              Complete guidance for call-up letters, green card processing, camp relocation, medical certs, and official documentation.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">Green Card Verification</span>
+              <span class="service-tag">Call-Up Letters</span>
+              <span class="service-tag">Camp Relocation</span>
+            </div>
+            <div class="service-actions-row">
+              <a
+                class="compact-contact-btn compact-wa-btn"
+                href="https://wa.me/2349154682775?text=Hello%20DEXTERITY%2B%20KONSULTS%2C%20I%20need%20guidance%20with%20NYSC%20Affairs"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="icon-badge">💬</span> WhatsApp (09154682775)
+              </a>
+              <a class="compact-contact-btn compact-phone-btn" href="tel:07026634724">
+                <span class="icon-badge">📞</span> Call (07026634724)
+              </a>
+              <button class="sound-toggle-btn" data-target="video-nysc-affairs">
+                <span class="sound-icon">🔇</span> <span class="sound-text">MUTE</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 5: CREATIVE GRAPHICS & BRANDING
+         ========================================================= -->
+    <section id="service-graphics" class="cinematic-service-section">
+      <div class="cinematic-theater-container">
+        <div class="cinematic-video-theater">
+          <video
+            id="video-graphics-services"
+            class="cinematic-service-video"
+            src="/assets/aistudio/20261106_081928_922089bb.mp4"
+            muted
+            loop
+            playsinline
+            autoplay
+          ></video>
+          <div class="cinematic-bottom-gradient"></div>
+          <div class="cinematic-bottom-overlay">
+            <div class="service-kicker">VISUAL IDENTITY & MEDIA</div>
+            <div class="service-title">GRAPHICS SERVICES</div>
+            <div class="service-headline">Visuals that Command Attention & Deliver Impact.</div>
+            <p class="service-desc">
+              Premium brand identity, promotional flyers, certificates, 3D social media advertisements, and executive presentation materials.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">3D Motion Ads</span>
+              <span class="service-tag">Event Flyers</span>
+              <span class="service-tag">Corporate Brand Kits</span>
+            </div>
+            <div class="service-actions-row">
+              <a
+                class="compact-contact-btn compact-wa-btn"
+                href="https://wa.me/2349154682775?text=Hello%20DEXTERITY%2B%20KONSULTS%2C%20I%20need%20Creative%20Graphics%20and%20Flyers"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="icon-badge">💬</span> WhatsApp (09154682775)
+              </a>
+              <a class="compact-contact-btn compact-phone-btn" href="tel:07026634724">
+                <span class="icon-badge">📞</span> Call (07026634724)
+              </a>
+              <button class="sound-toggle-btn" data-target="video-graphics-services">
+                <span class="sound-icon">🔇</span> <span class="sound-text">MUTE</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 6: CONTACT & CONSULTATION
+         ========================================================= -->
+    <section id="contact-section">
+      <div class="contact-container">
+        <div class="contact-header">
+          <div class="contact-kicker">FAST RESPONSE &bull; DIRECT CHAT</div>
+          <h2 class="contact-title">BEGIN YOUR PROJECT</h2>
+          <p class="contact-subtitle">
+            Get in touch immediately. We attend to inquiries promptly across WhatsApp, direct phone calls, or the quick form below.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Quick WhatsApp Form -->
+          <div class="contact-card">
+            <form id="enquiry-form">
+              <div class="form-group">
+                <label for="full-name">Full Name</label>
+                <input type="text" id="full-name" class="form-control" placeholder="e.g. Samuel Adekunle" required />
+              </div>
+              <div class="form-group">
+                <label for="phone-number">Phone / WhatsApp Number</label>
+                <input type="tel" id="phone-number" class="form-control" placeholder="e.g. 09154682775" required />
+              </div>
+              <div class="form-group">
+                <label for="service-required">Required Service</label>
+                <select id="service-required" class="form-control" required>
+                  <option value="" disabled selected>Select a Service</option>
+                  <option value="Academic Project Writing">Academic Project Writing</option>
+                  <option value="Online Registration & Clearance">Online Registration & Clearance</option>
+                  <option value="NYSC Affairs & Call-Up">NYSC Affairs & Call-Up</option>
+                  <option value="Creative Graphics & Flyers">Creative Graphics & Flyers</option>
+                  <option value="General Consultation">General Consultation</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Project Details</label>
+                <textarea id="message" class="form-control" rows="3" placeholder="Brief description of your requirements..." required></textarea>
+              </div>
+              <button type="submit" class="submit-btn">
+                <span>Send via WhatsApp</span> &rarr;
+              </button>
+            </form>
+            <div id="form-toast" style="display: none; margin-top: 14px; color: #25d366; font-size: 13px; text-align: center;">
+              Connecting to DEXTERITY+ WhatsApp desk...
+            </div>
+          </div>
+
+          <!-- Direct Phone & WhatsApp Channels -->
+          <div class="contact-card direct-channels">
+            <a
+              href="https://wa.me/2349154682775?text=Hello%20DEXTERITY%2B%20KONSULTS%2C%20I%20would%20like%20to%20consult%20with%20your%20team"
+              target="_blank"
+              rel="noopener"
+              class="channel-item"
+            >
+              <div class="channel-icon wa">💬</div>
+              <div>
+                <div class="channel-label">Official WhatsApp Desk</div>
+                <div class="channel-value">+234 915 468 2775</div>
+              </div>
+            </a>
+
+            <a href="tel:07026634724" class="channel-item">
+              <div class="channel-icon phone">📞</div>
+              <div>
+                <div class="channel-label">Direct Telephone Line</div>
+                <div class="channel-value">+234 702 663 4724</div>
+              </div>
+            </a>
+
+            <div style="background: rgba(2, 4, 13, 0.7); border: 1px solid rgba(214, 180, 92, 0.25); border-radius: 8px; padding: 18px 20px;">
+              <div class="channel-label" style="margin-bottom: 6px;">Our Core Promise</div>
+              <div style="font-size: 13.5px; line-height: 1.5; color: rgba(255, 255, 255, 0.85);">
+                &ldquo;Precision in Writing. Excellence in Service. Results that Speak.&rdquo;<br />
+                Tailored solutions delivered with timeliness, originality, and institutional standard.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide-out Navigation Drawer -->
+    <div id="nav-drawer" class="nav-drawer" aria-hidden="true">
+      <div class="nav-drawer-panel">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div class="logo-disc" style="width: 30px; height: 30px; font-size: 14px;">D+</div>
+              <span style="font-family: 'Archivo', sans-serif; font-style: italic; font-weight: 900; font-size: 18px; color: #ffffff;">DEXTERITY</span>
+            </div>
+            <button id="drawer-close" class="drawer-close" aria-label="Close Navigation">&times;</button>
+          </div>
+
+          <div style="margin-bottom: 24px;">
+            <div style="font-size: 11px; font-weight: 800; letter-spacing: 0.25em; color: var(--brand-gold-light); margin-bottom: 14px; text-transform: uppercase;">
+              EXPLORE OUR SERVICES
+            </div>
+            <a href="#service-writing" class="service-item-box drawer-nav-link">
+              <div style="font-weight: 700; font-size: 14px; color: #ffffff;">01. Project Writing</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.7);">Theses, data analysis, and academic research</div>
+            </a>
+            <a href="#service-registration" class="service-item-box drawer-nav-link">
+              <div style="font-weight: 700; font-size: 14px; color: #ffffff;">02. Online Registration</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.7);">JAMB CAPS, institutional clearance, and admission</div>
+            </a>
+            <a href="#service-nysc" class="service-item-box drawer-nav-link">
+              <div style="font-weight: 700; font-size: 14px; color: #ffffff;">03. NYSC Affairs</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.7);">Call-up letters, green card, and camp relocation</div>
+            </a>
+            <a href="#service-graphics" class="service-item-box drawer-nav-link">
+              <div style="font-weight: 700; font-size: 14px; color: #ffffff;">04. Graphics Services</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.7);">Flyers, 3D promotional videos, and brand identity</div>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <a
+            href="https://wa.me/2349154682775?text=Hello%20DEXTERITY%2B%20KONSULTS"
+            target="_blank"
+            rel="noopener"
+            style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 44px; background: #25d366; color: #ffffff; border-radius: 6px; font-weight: 700; text-decoration: none; font-size: 13px;"
+          >
+            <span>💬 Chat on WhatsApp (09154682775)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Sticky Contact Bar -->
+    <div id="mobile-contact-bar" class="mobile-contact-bar">
+      <a
+        href="https://wa.me/2349154682775?text=Hello%20DEXTERITY%2B%20KONSULTS"
+        target="_blank"
+        rel="noopener"
+        class="compact-contact-btn compact-wa-btn"
+        style="flex: 1; justify-content: center;"
+      >
+        <span class="icon-badge">💬</span> WhatsApp
+      </a>
+      <a
+        href="tel:07026634724"
+        class="compact-contact-btn compact-phone-btn"
+        style="flex: 1; justify-content: center;"
+      >
+        <span class="icon-badge">📞</span> Call
+      </a>
+    </div>
+
+    <!-- =========================================================
+         SCRIPTS: HERO 3D TRACKING + CONTINUOUS UNINTERRUPTED PLAYBACK
+         ========================================================= -->
+    <script>
+      (function () {
+        // --- 1. HERO LOGIC (PRESERVED IN FULL) ---
+        const CLIP_URL =
+          "https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/e1b48476-24ab-456a-bb12-13e63bc60973.mp4";
+
+        const frame = document.getElementById("frame");
+        const video = document.getElementById("head-video");
+        const helmetImg = document.getElementById("helmet-img");
+        const pushBtn = document.getElementById("push-btn");
+        const cursorDot = document.getElementById("cursor-dot");
+        const cursorRing = document.getElementById("cursor-ring");
+        const activationToast = document.getElementById("activation-toast");
+
+        const logo = document.getElementById("logo");
+        const menuBtn = document.getElementById("menu-btn");
+        const eyebrow = document.getElementById("eyebrow");
+        const headline = document.getElementById("headline");
+        const subtitle = document.getElementById("subtitle");
+        const serviceStrip = document.getElementById("service-strip");
+        const captionLeft = document.getElementById("caption-left");
+        const captionRight = document.getElementById("caption-right");
+
+        const navDrawer = document.getElementById("nav-drawer");
+        const drawerClose = document.getElementById("drawer-close");
+        const mobileContactBar = document.getElementById("mobile-contact-bar");
+        const drawerNavLinks = document.querySelectorAll(".drawer-nav-link");
+
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        // Show mobile contact bar on small screens
+        function checkMobile() {
+          if (window.innerWidth <= 820) {
+            mobileContactBar.style.display = "flex";
+          } else {
+            mobileContactBar.style.display = "none";
+          }
+        }
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+
+        // Drawer toggle
+        menuBtn.addEventListener("click", () => {
+          navDrawer.classList.add("open");
+          navDrawer.setAttribute("aria-hidden", "false");
+        });
+        drawerClose.addEventListener("click", () => {
+          navDrawer.classList.remove("open");
+          navDrawer.setAttribute("aria-hidden", "true");
+        });
+        navDrawer.addEventListener("click", (e) => {
+          if (e.target === navDrawer) {
+            navDrawer.classList.remove("open");
+            navDrawer.setAttribute("aria-hidden", "true");
+          }
+        });
+        drawerNavLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            navDrawer.classList.remove("open");
+            navDrawer.setAttribute("aria-hidden", "true");
+          });
+        });
+
+        // Load Head Video Clip via Blob for instantaneous seeking
+        if (!prefersReducedMotion) {
+          async function loadClip() {
+            try {
+              const res = await fetch(CLIP_URL);
+              if (!res.ok) throw new Error("Fetch status: " + res.status);
+              const blob = await res.blob();
+              const blobUrl = URL.createObjectURL(blob);
+              video.src = blobUrl;
+            } catch (err) {
+              console.warn("Fallback to direct video URL", err);
+              video.src = CLIP_URL;
+            }
+          }
+          loadClip();
+        }
+
+        // Fade in head-clip video on its first seek
+        let hasFadedIn = false;
+        function onFirstSeek() {
+          if (!hasFadedIn && !prefersReducedMotion) {
+            hasFadedIn = true;
+            video.classList.add("visible");
+          }
+        }
+        video.addEventListener("seeked", onFirstSeek);
+
+        // Center cadet gaze by default
+        video.addEventListener("loadedmetadata", () => {
+          const initialTime = (video.duration || 5.04) * 0.5;
+          targetTime = initialTime;
+          displayedTime = initialTime;
+          try {
+            video.currentTime = initialTime;
+          } catch (e) {}
+        });
+
+        // Head follow & Idle Drift State
+        let pointerX = window.innerWidth / 2;
+        let pointerY = window.innerHeight / 2;
+        let ringX = pointerX;
+        let ringY = pointerY;
+        let lastMoveTime = performance.now();
+        let isCursorVisible = false;
+
+        let targetTime = 2.52;
+        let displayedTime = 2.52;
+
+        function updatePointerTarget(clientX, clientY) {
+          pointerX = clientX;
+          pointerY = clientY;
+          lastMoveTime = performance.now();
+
+          if (!isCursorVisible) {
+            cursorDot.style.opacity = "1";
+            cursorRing.style.opacity = "1";
+            isCursorVisible = true;
+          }
+
+          cursorDot.style.transform = `translate3d(${pointerX - 3.5}px, ${pointerY - 3.5}px, 0)`;
+
+          // Head follow mapping across hero frame
+          const rect = frame.getBoundingClientRect();
+          const frameProgress = (pointerX - rect.left) / rect.width;
+          const normalizedProgress = Math.min(Math.max((frameProgress - 0.14) / (0.86 - 0.14), 0), 1);
+          const dur = video.duration || 5.04;
+          targetTime = normalizedProgress * dur;
+        }
+
+        window.addEventListener("pointermove", (e) => {
+          updatePointerTarget(e.clientX, e.clientY);
+        });
+
+        window.addEventListener(
+          "touchmove",
+          (e) => {
+            if (e.touches && e.touches.length > 0) {
+              const t = e.touches[0];
+              updatePointerTarget(t.clientX, t.clientY);
+            }
+          },
+          { passive: true }
+        );
+
+        document.addEventListener("mouseleave", () => {
+          cursorDot.style.opacity = "0";
+          cursorRing.style.opacity = "0";
+          isCursorVisible = false;
+        });
+
+        // Animation Loop: Cursor Ring easing (x0.55) & Video Seek easing (x0.14)
+        function tick(now) {
+          if (isCursorVisible) {
+            ringX += (pointerX - ringX) * 0.55;
+            ringY += (pointerY - ringY) * 0.55;
+            cursorRing.style.transform = `translate3d(${ringX - 22}px, ${ringY - 22}px, 0)`;
+          }
+
+          if (!prefersReducedMotion && video.duration) {
+            const dur = video.duration;
+
+            // Idle drift after 3.5s without movement
+            if (now - lastMoveTime > 3500) {
+              const idleSec = (now - lastMoveTime - 3500) / 1000;
+              const sineVal = Math.sin(idleSec * ((Math.PI * 2) / 5.2));
+              targetTime = (0.5 + 0.32 * sineVal) * dur;
+            }
+
+            displayedTime += (targetTime - displayedTime) * 0.14;
+
+            if (!video.seeking && Math.abs(video.currentTime - displayedTime) > 0.006) {
+              try {
+                video.currentTime = displayedTime;
+              } catch (e) {}
+            }
+          }
+
+          requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+
+        // Helmet Toggle & PUSH ME Button
+        let isHelmetOn = false;
+        let toastTimeout = null;
+
+        pushBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+
+          pushBtn.classList.remove("pressing");
+          void pushBtn.offsetWidth;
+          pushBtn.classList.add("pressing");
+          setTimeout(() => {
+            pushBtn.classList.remove("pressing");
+          }, 330);
+
+          isHelmetOn = !isHelmetOn;
+          pushBtn.setAttribute("aria-pressed", isHelmetOn ? "true" : "false");
+          if (isHelmetOn) {
+            helmetImg.classList.add("on");
+            activationToast.classList.add("show");
+            if (toastTimeout) clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+              activationToast.classList.remove("show");
+            }, 2800);
+          } else {
+            helmetImg.classList.remove("on");
+            activationToast.classList.remove("show");
+          }
+        });
+
+        // Entrance Animation Timeline (~1.8s)
+        if (!prefersReducedMotion) {
+          logo.animate(
+            [
+              { opacity: 0, transform: "translateY(calc(-28 * var(--u)))" },
+              { opacity: 1, transform: "translateY(0)" }
+            ],
+            { duration: 650, delay: 50, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "forwards" }
+          );
+
+          menuBtn.animate(
+            [
+              { opacity: 0, transform: "translateY(calc(-28 * var(--u)))" },
+              { opacity: 1, transform: "translateY(0)" }
+            ],
+            { duration: 650, delay: 100, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "forwards" }
+          );
+
+          eyebrow.animate(
+            [
+              { opacity: 0, letterSpacing: "0.9em", transform: "translateY(calc(14 * var(--u)))" },
+              { opacity: 1, letterSpacing: "0.46em", transform: "translateY(0)" }
+            ],
+            { duration: 750, delay: 280, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "forwards" }
+          );
+
+          headline.animate(
+            [
+              { opacity: 0, filter: "blur(14px)", transform: "translateY(calc(36 * var(--u)))" },
+              { opacity: 1, filter: "blur(0px)", transform: "translateY(0)" }
+            ],
+            { duration: 850, delay: 480, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "forwards" }
+          );
+
+          subtitle.animate(
+            [
+              { opacity: 0, transform: "translateY(calc(20 * var(--u)))" },
+              { opacity: 1, transform: "translateY(0)" }
+            ],
+            { duration: 750, delay: 780, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "forwards" }
+          );
+
+          serviceStrip.animate(
+            [
+              { opacity: 0, transform: "translateY(calc(14 * var(--u)))" },
+              { opacity: 1, transform: "translateY(0)" }
+            ],
+            { duration: 700, delay: 880, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "forwards" }
+          );
+
+          captionLeft.animate(
+            [
+              { opacity: 0, transform: "translateY(calc(16 * var(--u)))" },
+              { opacity: 1, transform: "translateY(0)" }
+            ],
+            { duration: 700, delay: 960, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "forwards" }
+          );
+
+          captionRight.animate(
+            [
+              { opacity: 0, transform: "translateY(calc(16 * var(--u)))" },
+              { opacity: 1, transform: "translateY(0)" }
+            ],
+            { duration: 700, delay: 960, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "forwards" }
+          );
+
+          pushBtn.animate(
+            [
+              { opacity: 0, transform: "scale(0.3)" },
+              { opacity: 1, transform: "scale(1.12)", offset: 0.7 },
+              { opacity: 1, transform: "scale(1)" }
+            ],
+            { duration: 600, delay: 1200, easing: "cubic-bezier(0.34, 1.35, 0.64, 1)", fill: "forwards" }
+          );
+        }
+
+        // --- 2. CONTINUOUS UNINTERRUPTED PLAYBACK FOR ALL 4 SERVICE VIDEOS ---
+        const serviceVideos = [
+          document.getElementById("video-project-writing"),
+          document.getElementById("video-online-registration"),
+          document.getElementById("video-nysc-affairs"),
+          document.getElementById("video-graphics-services")
+        ].filter(Boolean);
+
+        function ensureAllVideosPlaying() {
+          serviceVideos.forEach((vid) => {
+            vid.muted = true;
+            vid.loop = true;
+            vid.playsInline = true;
+            if (vid.paused) {
+              const playPromise = vid.play();
+              if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                  const onGesture = () => {
+                    vid.play().catch(() => {});
+                    window.removeEventListener("pointerdown", onGesture);
+                    window.removeEventListener("scroll", onGesture);
+                    window.removeEventListener("touchstart", onGesture);
+                  };
+                  window.addEventListener("pointerdown", onGesture, { once: true, passive: true });
+                  window.addEventListener("scroll", onGesture, { once: true, passive: true });
+                  window.addEventListener("touchstart", onGesture, { once: true, passive: true });
+                });
+              }
+            }
+          });
+        }
+
+        // Initialize immediate uninterrupted playback
+        ensureAllVideosPlaying();
+        document.addEventListener("DOMContentLoaded", ensureAllVideosPlaying);
+        window.addEventListener("load", ensureAllVideosPlaying);
+
+        // Native seamless loop guarantee without black frames or pause delays
+        serviceVideos.forEach((vid) => {
+          vid.addEventListener("ended", () => {
+            vid.currentTime = 0;
+            vid.play().catch(() => {});
+          });
+        });
+
+        // Sound toggle buttons for each video card
+        const soundToggles = document.querySelectorAll(".sound-toggle-btn");
+        soundToggles.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const targetId = btn.getAttribute("data-target");
+            const targetVideo = document.getElementById(targetId);
+            if (!targetVideo) return;
+
+            targetVideo.muted = !targetVideo.muted;
+            const soundIcon = btn.querySelector(".sound-icon");
+            const soundText = btn.querySelector(".sound-text");
+
+            if (targetVideo.muted) {
+              if (soundIcon) soundIcon.textContent = "🔇";
+              if (soundText) soundText.textContent = "MUTE";
+              btn.style.color = "#f4d375";
+            } else {
+              if (soundIcon) soundIcon.textContent = "🔊";
+              if (soundText) soundText.textContent = "UNMUTED";
+              btn.style.color = "#25d366";
+            }
+          });
+        });
+
+        // --- 3. ENQUIRY FORM SUBMISSION HANDLER ---
+        const enquiryForm = document.getElementById("enquiry-form");
+        const formToast = document.getElementById("form-toast");
+
+        if (enquiryForm) {
+          enquiryForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const name = document.getElementById("full-name").value.trim();
+            const phone = document.getElementById("phone-number").value.trim();
+            const service = document.getElementById("service-required").value;
+            const message = document.getElementById("message").value.trim();
+
+            if (!name || !phone || !service || !message) {
+              return;
+            }
+
+            // Display success feedback
+            formToast.style.display = "block";
+            formToast.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+            // Generate structured WhatsApp prefilled message
+            const waText = encodeURIComponent(
+              `*NEW SERVICE ENQUIRY — DEXTERITY+ KONSULTS*\n\n` +
+                `*Name:* ${name}\n` +
+                `*Phone:* ${phone}\n` +
+                `*Service:* ${service}\n` +
+                `*Details:* ${message}`
+            );
+
+            // Forward to WhatsApp after 1.2s delay for seamless user journey
+            setTimeout(() => {
+              window.open(`https://wa.me/2349154682775?text=${waText}`, "_blank");
+            }, 1200);
+          });
+        }
+
+        // Custom cursor hover enhancements for buttons and links
+        const interactiveElements = document.querySelectorAll(
+          "a, button, input, select, textarea, .compact-contact-btn, #push-btn, #menu-btn"
+        );
+
+        interactiveElements.forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            cursorRing.style.width = "52px";
+            cursorRing.style.height = "52px";
+            cursorRing.style.borderColor = "#f2d98b";
+            cursorRing.style.backgroundColor = "rgba(214, 180, 92, 0.18)";
+          });
+          el.addEventListener("mouseleave", () => {
+            cursorRing.style.width = "44px";
+            cursorRing.style.height = "44px";
+            cursorRing.style.borderColor = "rgba(255, 255, 255, 0.9)";
+            cursorRing.style.backgroundColor = "transparent";
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

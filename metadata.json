@@ -1,0 +1,6 @@
+{
+  "name": "DEXTERITY+ KONSULTS",
+  "description": "Cinematic premium website for Dexterity+ Konsults: Project Writing, Online Registration, NYSC Affairs, and Creative Graphics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
